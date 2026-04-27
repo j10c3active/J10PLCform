@@ -42,7 +42,6 @@ input, textarea, select {
     margin-top: 5px;
     border-radius: 8px;
     border: 1px solid #ccc;
-    font-size: 14px;
 }
 
 textarea {
@@ -58,11 +57,6 @@ button {
     background: #2e7d32;
     color: white;
     font-size: 16px;
-    cursor: pointer;
-}
-
-button:hover {
-    background: #1b5e20;
 }
 
 .note {
@@ -70,20 +64,9 @@ button:hover {
     color: #666;
 }
 
-/* PRINT FIX */
 @media print {
-    button,
-    .note {
+    button, .note {
         display: none !important;
-    }
-
-    body {
-        background: white !important;
-    }
-
-    .container {
-        box-shadow: none !important;
-        border: none !important;
     }
 }
 </style>
@@ -92,27 +75,25 @@ button:hover {
 <body>
 
 <div class="container">
-
 <h1>PLC WEEKLY REPORT</h1>
 
-<!-- SUBJECT -->
 <div class="section">
 <h2>Basic Information</h2>
 
 <label>Subject</label>
-<select>
-    <option>Bahasa Melayu</option>
-    <option>English</option>
-    <option>Science</option>
-    <option>Mathematics</option>
-    <option>MIB</option>
-    <option>Lukisan</option>
-    <option>STEAM</option>
-    <option>Pendidikan Agama Islam</option>
-    <option>Pendidikan Pra Sekolah</option>
-    <option>ICT</option>
-    <option>Pendidikan Jasmani</option>
-    <option>Social Studies</option>
+<select id="subject">
+<option>Bahasa Melayu</option>
+<option>English</option>
+<option>Science</option>
+<option>Mathematics</option>
+<option>MIB</option>
+<option>Lukisan</option>
+<option>STEAM</option>
+<option>Pendidikan Agama Islam</option>
+<option>Pendidikan Pra Sekolah</option>
+<option>ICT</option>
+<option>Pendidikan Jasmani</option>
+<option>Social Studies</option>
 </select>
 
 <label>School</label>
@@ -120,156 +101,175 @@ button:hover {
 
 <label>PLC Frequency</label>
 <select>
-    <option>Weekly on agreed selected day</option>
-    <option>Every Monday</option>
-    <option>Every Tuesday</option>
-    <option>Every Wednesday</option>
-    <option>Every Thursday</option>
-    <option>Every Saturday</option>
-    <option>Once</option>
-    <option>Depends on schedule</option>
+<option>Weekly on agreed selected day</option>
+<option>Every Monday</option>
+<option>Every Tuesday</option>
+<option>Every Wednesday</option>
+<option>Every Thursday</option>
+<option>Every Saturday</option>
+<option>Once</option>
+<option>Depends on schedule</option>
 </select>
 
-<label>Participants (Choose or Manual)</label>
+<label>Participants</label>
 <select>
-    <option>Science Team</option>
-    <option>English Team</option>
-    <option>Bahasa Melayu Team</option>
-    <option>Mathematics Team</option>
-    <option>MIB Team</option>
-    <option>ICT Team</option>
-    <option>STEAM Team</option>
-    <option>Lower Primary Teachers</option>
-    <option>Upper Primary Teachers</option>
+<option>Science Team</option>
+<option>English Team</option>
+<option>Bahasa Melayu Team</option>
+<option>Mathematics Team</option>
+<option>MIB Team</option>
+<option>Lukisan Team</option>
+<option>STEAM Team</option>
+<option>Pendidikan Agama Islam Team</option>
+<option>ICT Team</option>
+<option>Pendidikan Jasmani Team</option>
+<option>Social Studies Team</option>
 </select>
 
-<input type="text" placeholder="OR type names manually if needed">
+<input type="text" placeholder="Or enter names manually">
 
-<label>PLC / PD Date</label>
+<label>PLC Date</label>
 <input type="date">
 
 </div>
 
-<!-- GENERIC SECTION TEMPLATE STYLE -->
+<!-- FUNCTION TEMPLATE -->
+<script>
+function getValue(selectId, textId) {
+    let select = document.getElementById(selectId).value;
+    let text = document.getElementById(textId).value;
+    return text ? text : select;
+}
+</script>
 
+<!-- FOCUS -->
 <div class="section">
 <h2>Focus Area</h2>
-<select>
-    <option>Concept understanding</option>
-    <option>Science process skills</option>
-    <option>Exam / SBA preparation</option>
-    <option>Classroom engagement</option>
-    <option>Differentiated learning</option>
-    <option>HOTS development</option>
-    <option>Practical / hands-on activities</option>
-    <option>Vocabulary development</option>
+<select id="focus">
+<option>Concept understanding</option>
+<option>Exam preparation</option>
+<option>HOTS development</option>
+<option>Student engagement</option>
+<option>Differentiation</option>
 </select>
-<textarea placeholder="OR type manually if needed"></textarea>
+<textarea id="focusText"></textarea>
 </div>
 
+<!-- ISSUES -->
 <div class="section">
 <h2>Identified Issues</h2>
-<select>
-    <option>Weak written explanations</option>
-    <option>Limited vocabulary</option>
-    <option>Low engagement</option>
-    <option>Difficulty answering HOTS questions</option>
-    <option>Misconceptions in concepts</option>
-    <option>Gap between high and low achievers</option>
-    <option>Time management issues</option>
+<select id="issues">
+<option>Weak explanation</option>
+<option>Low engagement</option>
+<option>Limited vocabulary</option>
+<option>HOTS difficulty</option>
+<option>Achievement gap</option>
 </select>
-<textarea placeholder="OR type manually if needed"></textarea>
+<textarea id="issuesText"></textarea>
 </div>
 
+<!-- DISCUSSION -->
 <div class="section">
 <h2>Discussion & Observation</h2>
-<select>
-    <option>Pupils engaged but still weak in writing</option>
-    <option>Good participation in hands-on activities</option>
-    <option>Mixed ability gap still visible</option>
-    <option>Improvement in group discussion</option>
-    <option>Need more scaffolding support</option>
+<select id="discussion">
+<option>Students engaged but weak writing</option>
+<option>Good participation observed</option>
+<option>Mixed ability gap evident</option>
+<option>Need more scaffolding</option>
 </select>
-<textarea placeholder="OR type manually if needed"></textarea>
+<textarea id="discussionText"></textarea>
 </div>
 
 <!-- PDCA -->
-
 <div class="section">
-<h2>PDCA - PLAN</h2>
-<select>
-    <option>Differentiated worksheets</option>
-    <option>Hands-on activities</option>
-    <option>Sentence starters / scaffolding</option>
-    <option>Group work activities</option>
-    <option>Revision drills</option>
+<h2>PLAN</h2>
+<select id="plan">
+<option>Differentiated tasks</option>
+<option>Hands-on activities</option>
+<option>Scaffolding techniques</option>
 </select>
-<textarea></textarea>
+<textarea id="planText"></textarea>
 </div>
 
 <div class="section">
-<h2>PDCA - DO</h2>
-<select>
-    <option>Conducted experiments</option>
-    <option>Group discussions</option>
-    <option>Quiz activities</option>
-    <option>Presentations</option>
-    <option>Worksheet practice</option>
+<h2>DO</h2>
+<select id="do">
+<option>Group work</option>
+<option>Experiments</option>
+<option>Quiz activities</option>
 </select>
-<textarea></textarea>
+<textarea id="doText"></textarea>
 </div>
 
 <div class="section">
-<h2>PDCA - CHECK</h2>
-<select>
-    <option>Improved engagement observed</option>
-    <option>Still weak in written responses</option>
-    <option>Better understanding shown</option>
-    <option>Mixed results across classes</option>
+<h2>CHECK</h2>
+<select id="check">
+<option>Improved engagement</option>
+<option>Better understanding</option>
+<option>Still weak responses</option>
 </select>
-<textarea></textarea>
+<textarea id="checkText"></textarea>
 </div>
 
 <div class="section">
-<h2>PDCA - ACT</h2>
-<select>
-    <option>Increase scaffolding support</option>
-    <option>Refine teaching materials</option>
-    <option>More guided practice needed</option>
-    <option>Continue current approach with improvement</option>
+<h2>ACT</h2>
+<select id="act">
+<option>Improve scaffolding</option>
+<option>Refine teaching</option>
+<option>More practice</option>
 </select>
-<textarea></textarea>
+<textarea id="actText"></textarea>
 </div>
 
+<!-- REFLECTION -->
 <div class="section">
-<h2>Reflection (Auto Generated)</h2>
+<h2>Reflection</h2>
+
+<select onchange="toggleReflection(this.value)">
+<option value="manual">Manual</option>
+<option value="auto">Auto Generate</option>
+</select>
+
+<div id="manualReflection">
+<textarea placeholder="Write reflection here..."></textarea>
+</div>
+
+<div id="autoReflection" style="display:none;">
 <button onclick="generateReflection()">Generate Reflection</button>
-<textarea id="reflectionBox" placeholder="Reflection will appear here..."></textarea>
+<textarea id="reflectionBox"></textarea>
+</div>
+
 </div>
 
 <button onclick="window.print()">Save as PDF / Download</button>
 
-<p class="note">
-Tip: On iPhone/Android, tap this button → Print → Save as PDF
-</p>
+<p class="note">Use Print → Save as PDF</p>
 
 </div>
 
 <script>
-function generateReflection() {
-    let subject = document.querySelector("select").value;
+function toggleReflection(mode){
+document.getElementById("manualReflection").style.display = mode==="manual"?"block":"none";
+document.getElementById("autoReflection").style.display = mode==="auto"?"block":"none";
+}
 
-    let plan = document.querySelectorAll("select")[2].value;
-    let doVal = document.querySelectorAll("select")[3].value;
-    let check = document.querySelectorAll("select")[4].value;
-    let act = document.querySelectorAll("select")[5].value;
+function generateReflection(){
+let subject=document.getElementById("subject").value;
+let focus=getValue("focus","focusText");
+let issues=getValue("issues","issuesText");
+let discussion=getValue("discussion","discussionText");
+let plan=getValue("plan","planText");
+let doVal=getValue("do","doText");
+let check=getValue("check","checkText");
+let act=getValue("act","actText");
 
-    let text =
-`Reflection for ${subject} PLC:
+let text=`During this PLC session, the ${subject} team focused on ${focus}, addressing ${issues}. Observations indicated that ${discussion}.
 
-The team focused on ${plan}. During implementation, ${doVal}. The outcome showed that ${check}. As a way forward, we will ${act}. This PLC session helped improve collaboration and provided clear direction for next steps in teaching and learning.`;
+Strategies such as ${plan} were implemented through ${doVal}. The results showed that ${check}, demonstrating improvement in pupil engagement and understanding. However, further support is required for some pupils.
 
-    document.getElementById("reflectionBox").value = text;
+Moving forward, the team will ${act}, with emphasis on differentiation, scaffolding, and targeted questioning to enhance learning outcomes.`;
+
+document.getElementById("reflectionBox").value=text;
 }
 </script>
 
